@@ -206,7 +206,14 @@ end
 -- Enable language servers
 local servers = {
   clangd = {},
-  rust_analyzer = {},
+  rust_analyzer = {
+    ['rust-analyzer'] = {
+      check = {
+        allTargets = false
+      }
+    }
+
+  },
   jedi_language_server = {},
   ruff_lsp = {},
 
