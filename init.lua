@@ -313,6 +313,9 @@ vim.g.NERDCommentEmptyLines = 1
 vim.g.NERDTrimTrailingWhitespace = 1
 vim.g.NERDToggleCheckAllLines = 1
 vim.g.NERDSpaceDelims = 1
+vim.cmd[[
+  let g:NERDCustomDelimiters = { 'c': { 'left': '//', 'right': ''} }
+]]
 vim.keymap.set({ 'n', 'v' }, '++', [[<plug>NERDCommenterToggle]], {})
 vim.keymap.set({ 'n', 'v' }, '<leader>/', [[<plug>NERDCommenterToggle]], {})
 

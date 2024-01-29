@@ -28,6 +28,15 @@ local plugins = {
       }
     },
 
+    -- Nice tools for cargo
+    {
+	'saecki/crates.nvim',
+	tag = 'stable',
+	config = function()
+	    require('crates').setup()
+	end,
+    },
+
     -- bufferline tabs at the top
     {
 	'akinsho/bufferline.nvim',
