@@ -15,19 +15,19 @@ vim.o.ignorecase = true         -- Case-insensitive search
 vim.wo.signcolumn = 'yes'       -- Keep signcolumn on by default
 vim.o.updatetime = 250          -- Decrease update time
 vim.o.timeoutlen = 300
-vim.o.termguicolors = true
+vim.o.termguicolors = true      -- enable nice colors
+vim.opt.shiftwidth = 4          -- vim-slueth may change this
 vim.o.completeopt = 'menuone,noselect'
-vim.opt.shiftwidth = 4 -- vim-slueth may change this
-TRANSPARENT = false    -- Enable transparency for basic themes
 theme = "catppuccin"
 
-if TRANSPARENT then
-  vim.cmd([[
-  autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-  autocmd vimenter * hi NonText guibg=NONE ctermbg=NONE
-  autocmd vimenter * hi NvimTreeNormal guibg=NONE ctermbg=NONE
-  autocmd vimenter * hi NormalFloat guibg=NONE ctermbg=NONE
-  ]])
+-- Disable autostart of the LSP for paths that contain these strings
+lsp_autostart_blacklist = {"APSshare", "iocBoot"}
+
+-- filetypes for EPICS related files
+-- Set filetype=conf for .cmd files on Linux
+if package.config:sub(1, 1) == '/' then
+  vim.cmd([[autocmd BufNewFile,BufRead *.cmd set filetype=conf]])
+  vim.cmd([[autocmd BufNewFile,BufRead *.db set filetype=conf]])
 end
 
 
@@ -237,14 +237,29 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
-
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
+-- returns false if string in the blacklist is
+-- found in the current absolute file path
+function check_autostart(blacklist)
+  local path = vim.api.nvim_buf_get_name(0)
+  for _,v in ipairs(blacklist) do
+    if string.find(path, v) ~= nil then
+      return false
+    end
+  end
+  return true
+end
+
+local autostart_bool = check_autostart(lsp_autostart_blacklist)
+
+-- call setup for each LSP
 mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
+      autostart = autostart_bool,
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
@@ -319,7 +334,6 @@ vim.cmd[[
 vim.keymap.set({ 'n', 'v' }, '++', [[<plug>NERDCommenterToggle]], {})
 vim.keymap.set({ 'n', 'v' }, '<leader>/', [[<plug>NERDCommenterToggle]], {})
 
-
 -- todo comments
 require("todo-comments").setup();
 
@@ -337,27 +351,3 @@ elseif theme == "ayu" then
   })
   vim.cmd.colorscheme "ayu-dark"
 end
-
-
--- EPICS stuff
--- Set filetype=conf for .cmd files on Linux
-if package.config:sub(1, 1) == '/' then
-  vim.cmd([[autocmd BufNewFile,BufRead *.cmd set filetype=conf]])
-  vim.cmd([[autocmd BufNewFile,BufRead *.db set filetype=conf]])
-end
-
--- Check if the current working directory contains the string "ioc" and execute :LspStop
--- function check_ioc_directory()
-  -- local current_directory = vim.fn.getcwd()
-  -- if string.find(current_directory, "ioc") then
-    -- -- Print a message to confirm that the condition is true
-    -- print("Current directory contains 'ioc', executing :LspStop")
-    -- -- Execute the LspStop command
-    -- vim.cmd("LspStop")
-  -- end
--- end
-
--- Set up an autocommand to trigger the function when a file is opened
--- vim.cmd [[
-  -- autocmd BufReadPost * lua check_ioc_directory()
--- ]]
