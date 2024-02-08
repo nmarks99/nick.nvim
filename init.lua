@@ -21,13 +21,15 @@ vim.o.completeopt = 'menuone,noselect'
 theme = "catppuccin"
 
 -- Disable autostart of the LSP for paths that contain these strings
-lsp_autostart_blacklist = {"APSshare", "iocBoot"}
+lsp_autostart_blacklist = {"APSshare", "iocBoot", "s100dserv"}
 
 -- filetypes for EPICS related files
 -- Set filetype=conf for .cmd files on Linux
 if package.config:sub(1, 1) == '/' then
   vim.cmd([[autocmd BufNewFile,BufRead *.cmd set filetype=conf]])
   vim.cmd([[autocmd BufNewFile,BufRead *.db set filetype=conf]])
+  vim.cmd([[autocmd BufNewFile,BufRead *.iocsh set filetype=conf]])
+  vim.cmd([[autocmd BufNewFile,BufRead *.substitutions set filetype=conf]])
 end
 
 
@@ -243,6 +245,7 @@ mason_lspconfig.setup {
 
 -- returns false if string in the blacklist is
 -- found in the current absolute file path
+-- FIX: doesn't work if nvim started without file
 function check_autostart(blacklist)
   local path = vim.api.nvim_buf_get_name(0)
   for _,v in ipairs(blacklist) do
