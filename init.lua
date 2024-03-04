@@ -2,7 +2,7 @@
 --            Options
 -- ==============================
 -- See `:help vim.o
-vim.g.mapleader = ' '           -- Set <space> as the leader key
+vim.g.mapleader = ' ' -- Set <space> as the leader key
 vim.g.maplocalleader = ' '
 vim.o.smartcase = true
 vim.o.hlsearch = true           -- Set highlight on search
@@ -18,10 +18,10 @@ vim.o.timeoutlen = 300
 vim.o.termguicolors = true      -- enable nice colors
 vim.opt.shiftwidth = 4          -- vim-slueth may change this
 vim.o.completeopt = 'menuone,noselect'
-theme = "catppuccin"
+theme = "ayu"
 
 -- Disable autostart of the LSP for paths that contain these strings
-lsp_autostart_blacklist = {"APSshare", "iocBoot", "s100dserv"}
+lsp_autostart_blacklist = { "APSshare", "iocBoot", "dserv" }
 
 -- filetypes for EPICS related files
 -- Set filetype=conf for .cmd files on Linux
@@ -76,7 +76,7 @@ require("bufferline").setup {
         filetype = "NvimTree",
         text = "File Explorer",
         highlight = "Directory",
-        separator = true     -- use a "true" to enable the default, or set your own character
+        separator = true -- use a "true" to enable the default, or set your own character
       },
     },
     hover = {
@@ -207,7 +207,12 @@ end
 
 -- Enable language servers
 local servers = {
-  clangd = {},
+  clangd = {
+    cmd = {
+      "clangd",
+      "--header-insertion=never",
+    },
+  },
   rust_analyzer = {
     ['rust-analyzer'] = {
       check = {
@@ -248,7 +253,7 @@ mason_lspconfig.setup {
 -- FIX: doesn't work if nvim started without file
 function check_autostart(blacklist)
   local path = vim.api.nvim_buf_get_name(0)
-  for _,v in ipairs(blacklist) do
+  for _, v in ipairs(blacklist) do
     if string.find(path, v) ~= nil then
       return false
     end
@@ -331,7 +336,7 @@ vim.g.NERDCommentEmptyLines = 1
 vim.g.NERDTrimTrailingWhitespace = 1
 vim.g.NERDToggleCheckAllLines = 1
 vim.g.NERDSpaceDelims = 1
-vim.cmd[[
+vim.cmd [[
   let g:NERDCustomDelimiters = { 'c': { 'left': '//', 'right': ''} }
 ]]
 vim.keymap.set({ 'n', 'v' }, '++', [[<plug>NERDCommenterToggle]], {})
@@ -350,7 +355,18 @@ if theme == "catppuccin" then
 elseif theme == "ayu" then
   require('ayu').setup({
     mirage = false,
-    overrides = {},
+    overrides = {
+      -- transparent
+      Normal = { bg = "None" },
+      ColorColumn = { bg = "None" },
+      SignColumn = { bg = "None" },
+      Folded = { bg = "None" },
+      FoldColumn = { bg = "None" },
+      CursorLine = { bg = "None" },
+      CursorColumn = { bg = "None" },
+      WhichKeyFloat = { bg = "None" },
+      VertSplit = { bg = "None" },
+    },
   })
   vim.cmd.colorscheme "ayu-dark"
 end
