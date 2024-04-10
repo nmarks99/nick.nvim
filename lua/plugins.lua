@@ -1,5 +1,6 @@
 local plugins = {
 
+    -- measures startup time
     "dstein64/vim-startuptime",
 
     -- Git related plugins
