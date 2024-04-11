@@ -13,11 +13,10 @@ local plugins = {
     -- comment
     'preservim/nerdcommenter',
 
-    -- catpuccin theme
+    -- themes
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-
-    -- ayu theme
     { "Shatur/neovim-ayu", priority = 1000 },
+    { "rose-pine/neovim", name = "rose-pine" },
 
     {
       "folke/todo-comments.nvim",

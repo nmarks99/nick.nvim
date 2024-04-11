@@ -381,7 +381,7 @@ if not file then
   theme_ok = false
 else
   local theme_conf_ops = { "theme", "transparent" }
-  local available_themes = { "ayu", "catppuccin" }
+  local available_themes = { "ayu", "catppuccin", "rose-pine" }
   for line in file:lines() do
     local key, value = line:match("(%a+)%s*=%s*(.*)")
     if in_table(theme_conf_ops, key) then
@@ -444,4 +444,13 @@ elseif theme == "ayu" then
     })
   end
   vim.cmd.colorscheme "ayu-dark"
+elseif theme == "rose-pine" then
+  require("rose-pine").setup({
+    styles = {
+      italic = false,
+      transparency = transparent,
+    },
+
+  })
+  vim.cmd.colorscheme "rose-pine"
 end
