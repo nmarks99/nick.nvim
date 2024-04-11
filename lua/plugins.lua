@@ -10,14 +10,23 @@ local plugins = {
     -- Detect tabstop and shiftwidth automatically
     'tpope/vim-sleuth',
 
-    -- comment
+    -- Language aware comment
     'preservim/nerdcommenter',
+
+    -- markdown live preview
+    {
+	"iamcco/markdown-preview.nvim",
+	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+	ft = { "markdown" },
+	build = function() vim.fn["mkdp#util#install"]() end,
+    },
 
     -- themes
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "Shatur/neovim-ayu", priority = 1000 },
     { "rose-pine/neovim", name = "rose-pine" },
 
+    -- TODO comments manager
     {
       "folke/todo-comments.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
