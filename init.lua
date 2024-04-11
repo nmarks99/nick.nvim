@@ -410,7 +410,6 @@ if theme_ok then
   theme = theme_tmp
   transparent = transparent_tmp
 else
-  print("invalid theme.conf file")
   theme = default_theme
   transparent = default_transparency
 end
