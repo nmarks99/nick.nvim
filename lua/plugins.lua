@@ -13,6 +13,14 @@ local plugins = {
     -- Language aware comment
     'preservim/nerdcommenter',
 
+    -- File system tool
+    {
+      'stevearc/oil.nvim',
+      opts = {},
+      -- Optional dependencies
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+
     -- markdown live preview
     {
 	"iamcco/markdown-preview.nvim",
