@@ -4,7 +4,7 @@
 -- See `:help vim.o
 vim.g.mapleader = ' '           -- Set <space> as the leader key
 vim.g.maplocalleader = ' '
-vim.o.hlsearch = false          -- Stops highlighting after enter
+vim.o.hlsearch = true           -- highlight on search after enter
 vim.wo.number = true            -- enable line numbers
 vim.o.mouse = 'a'               -- Enable mouse mode
 vim.o.clipboard = 'unnamedplus' -- Sync clipboard
