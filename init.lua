@@ -81,6 +81,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- load plugins with lazy.nvim
 require("plugins")
 
+-- oil
+require("oil").setup()
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 -- bufferline
 require("bufferline").setup {
   options = {
@@ -234,8 +238,8 @@ local servers = {
     }
 
   },
-  jedi_language_server = {},
   ruff_lsp = {},
+  basedpyright = {},
 
   lua_ls = {
     Lua = {
