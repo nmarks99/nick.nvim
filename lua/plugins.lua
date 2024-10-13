@@ -21,13 +21,13 @@ local plugins = {
       dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
-    -- markdown live preview
-    {
-	"iamcco/markdown-preview.nvim",
-	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-	ft = { "markdown" },
-	build = function() vim.fn["mkdp#util#install"]() end,
-    },
+    -- -- markdown live preview
+    -- {
+	-- "iamcco/markdown-preview.nvim",
+	-- cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+	-- ft = { "markdown" },
+	-- build = function() vim.fn["mkdp#util#install"]() end,
+    -- },
 
     -- themes
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },

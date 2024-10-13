@@ -7,7 +7,9 @@ vim.g.maplocalleader = ' '
 vim.o.hlsearch = true           -- highlight on search after enter
 vim.wo.number = true            -- enable line numbers
 vim.o.mouse = 'a'               -- Enable mouse mode
-vim.o.clipboard = 'unnamedplus' -- Sync clipboard
+vim.schedule(function()         -- sync system clipboard (need wl-wayland on wayland)
+  vim.opt.clipboard = 'unnamedplus'
+end)
 vim.o.breakindent = true        -- Enable break indent
 vim.o.undofile = true           -- Save undo history
 vim.o.ignorecase = true         -- Case-insensitive search...
@@ -73,6 +75,7 @@ vim.keymap.set("v", ">", ">gv" )
 -- Move stuff up and down and adjust indent
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 
 -- ==============================
 --            Plugins
