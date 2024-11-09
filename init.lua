@@ -243,6 +243,7 @@ local servers = {
   },
   ruff_lsp = {},
   basedpyright = {},
+  glsl_analyzer = {},
 
   lua_ls = {
     Lua = {
@@ -400,7 +401,7 @@ if not file then
   theme_ok = false
 else
   local theme_conf_ops = { "theme", "transparent" }
-  local available_themes = { "ayu", "catppuccin", "rose-pine" }
+  local available_themes = { "ayu", "catppuccin", "rose-pine", "nord" }
   for line in file:lines() do
     local key, value = line:match("(%a+)%s*=%s*(.*)")
     if in_table(theme_conf_ops, key) then
@@ -471,4 +472,6 @@ elseif theme == "rose-pine" then
 
   })
   vim.cmd.colorscheme "rose-pine"
+elseif theme == "nord" then
+  vim.cmd.colorscheme "nord"
 end

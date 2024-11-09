@@ -33,6 +33,7 @@ local plugins = {
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "Shatur/neovim-ayu", priority = 1000 },
     { "rose-pine/neovim", name = "rose-pine" },
+    { "shaunsingh/nord.nvim", name = "nord" },
 
     -- TODO comments manager
     {
@@ -79,6 +80,9 @@ local plugins = {
 	    'folke/neodev.nvim',
 	},
     },
+
+    -- GLSL syntax highlighting
+    { 'tikhomirov/vim-glsl' },
 
     -- Autocompletion
     {
