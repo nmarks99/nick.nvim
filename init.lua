@@ -7,9 +7,6 @@ vim.g.maplocalleader = ' '
 vim.o.hlsearch = true           -- highlight on search after enter
 vim.wo.number = true            -- enable line numbers
 vim.o.mouse = 'a'               -- Enable mouse mode
-vim.schedule(function()         -- sync system clipboard (need wl-wayland on wayland)
-  vim.opt.clipboard = 'unnamedplus'
-end)
 vim.o.breakindent = true        -- Enable break indent
 vim.o.undofile = true           -- Save undo history
 vim.o.ignorecase = true         -- Case-insensitive search...
@@ -24,6 +21,9 @@ vim.opt.belloff = "all"
 vim.opt.title = true
 vim.opt.incsearch = true
 vim.o.completeopt = 'menuone,noselect'
+vim.schedule(function()         -- sync system clipboard (need wl-wayland on wayland)
+  vim.opt.clipboard = 'unnamedplus'
+end)
 default_theme = "catppuccin"
 default_transparency = false
 
@@ -32,12 +32,12 @@ default_transparency = false
 lsp_autostart_blacklist = { "APSshare", "iocBoot", "dserv" }
 
 -- filetypes for EPICS related files
--- Set filetype=conf for .cmd files on Linux
 if package.config:sub(1, 1) == '/' then
   vim.cmd([[autocmd BufNewFile,BufRead *.cmd set filetype=conf]])
   vim.cmd([[autocmd BufNewFile,BufRead *.db set filetype=conf]])
   vim.cmd([[autocmd BufNewFile,BufRead *.iocsh set filetype=conf]])
   vim.cmd([[autocmd BufNewFile,BufRead *.substitutions set filetype=conf]])
+  vim.cmd([[autocmd BufNewFile,BufRead *.proto set filetype=conf]])
 end
 
 
@@ -395,6 +395,14 @@ local function expand_tilde(path)
   end
 end
 
+local available_themes = {
+  "ayu",
+  "catppuccin",
+  "rose-pine",
+  "gruvbox",
+  "nord"
+}
+
 theme_file = "~/.config/nvim/theme.conf"
 local file = io.open(expand_tilde(theme_file), "r")
 local theme_ok = true
@@ -402,7 +410,6 @@ if not file then
   theme_ok = false
 else
   local theme_conf_ops = { "theme", "transparent" }
-  local available_themes = { "ayu", "catppuccin", "rose-pine", "nord" }
   for line in file:lines() do
     local key, value = line:match("(%a+)%s*=%s*(.*)")
     if in_table(theme_conf_ops, key) then
@@ -431,6 +438,7 @@ if theme_ok then
   theme = theme_tmp
   transparent = transparent_tmp
 else
+  print("Invalid theme file")
   theme = default_theme
   transparent = default_transparency
 end
@@ -475,4 +483,9 @@ elseif theme == "rose-pine" then
   vim.cmd.colorscheme "rose-pine"
 elseif theme == "nord" then
   vim.cmd.colorscheme "nord"
+elseif theme == "gruvbox" then
+  require("gruvbox").setup({
+      transparent_mode = transparent,
+  })
+    vim.cmd("colorscheme gruvbox")
 end

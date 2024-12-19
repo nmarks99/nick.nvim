@@ -8,6 +8,7 @@ local plugins = {
     'tpope/vim-rhubarb',
 
     -- Detect tabstop and shiftwidth automatically
+    -- NOTE: very annoying when it doesn't work!
     'tpope/vim-sleuth',
 
     -- Language aware comment
@@ -21,19 +22,12 @@ local plugins = {
       dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
-    -- -- markdown live preview
-    -- {
-	-- "iamcco/markdown-preview.nvim",
-	-- cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-	-- ft = { "markdown" },
-	-- build = function() vim.fn["mkdp#util#install"]() end,
-    -- },
-
     -- themes
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "Shatur/neovim-ayu", priority = 1000 },
     { "rose-pine/neovim", name = "rose-pine" },
     { "shaunsingh/nord.nvim", name = "nord" },
+    { "ellisonleao/gruvbox.nvim", name = "gruvbox"},
 
     -- TODO comments manager
     {
@@ -100,9 +94,6 @@ local plugins = {
 	    'rafamadriz/friendly-snippets',
 	},
     },
-
-    -- Useful plugin to show you pending keybinds.
-    -- { 'folke/which-key.nvim', opts = {} },
 
     -- status line at the bottom
     {
