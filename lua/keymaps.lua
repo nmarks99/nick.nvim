@@ -1,6 +1,8 @@
 -- ==============================
 --            Keymaps
 -- ==============================
+-- Keymappings for built in Neovim features.
+-- Plugin specifc keymappings configured with plugins
 -- See `:help vim.keymap.set()`
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })

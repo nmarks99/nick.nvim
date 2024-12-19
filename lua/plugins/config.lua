@@ -3,6 +3,9 @@
 -- ==============================
 -- Configuration for miscellaneous plugins
 
+-- fzf-lua
+vim.keymap.set("n", "<c-P>", require('fzf-lua').files, { desc = "Fzf Files" })
+
 -- oil
 require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

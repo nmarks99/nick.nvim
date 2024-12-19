@@ -5,6 +5,17 @@
 -- See `:Lazy help`
 local plugins = {
 
+    -- fzf integration for neovim
+    {
+      "ibhagwan/fzf-lua",
+      -- optional for icon support
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+	-- calling `setup` is optional for customization
+	require("fzf-lua").setup({})
+      end
+    },
+
     -- measures startup time
     "dstein64/vim-startuptime",
 
