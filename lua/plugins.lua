@@ -1,5 +1,11 @@
 local plugins = {
 
+    -- themes
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    { "Shatur/neovim-ayu", priority = 1000 },
+    { "rose-pine/neovim", name = "rose-pine" },
+    { "ellisonleao/gruvbox.nvim", name = "gruvbox"},
+
     -- measures startup time
     "dstein64/vim-startuptime",
 
@@ -8,6 +14,7 @@ local plugins = {
     'tpope/vim-rhubarb',
 
     -- Detect tabstop and shiftwidth automatically
+    -- NOTE: very annoying when it doesn't work!
     'tpope/vim-sleuth',
 
     -- Language aware comment
@@ -21,7 +28,8 @@ local plugins = {
       dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
-    -- -- markdown live preview
+    -- markdown live preview
+    -- FIX: no longer working?
     -- {
 	-- "iamcco/markdown-preview.nvim",
 	-- cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -29,12 +37,7 @@ local plugins = {
 	-- build = function() vim.fn["mkdp#util#install"]() end,
     -- },
 
-    -- themes
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { "Shatur/neovim-ayu", priority = 1000 },
-    { "rose-pine/neovim", name = "rose-pine" },
-
-    -- TODO comments manager
+    -- todo comments manager
     {
       "folke/todo-comments.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
@@ -96,9 +99,6 @@ local plugins = {
 	    'rafamadriz/friendly-snippets',
 	},
     },
-
-    -- Useful plugin to show you pending keybinds.
-    -- { 'folke/which-key.nvim', opts = {} },
 
     -- status line at the bottom
     {
