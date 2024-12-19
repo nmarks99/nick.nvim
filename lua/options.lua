@@ -34,8 +34,3 @@ if package.config:sub(1, 1) == '/' then
   vim.cmd([[autocmd BufNewFile,BufRead *.substitutions set filetype=conf]])
   vim.cmd([[autocmd BufNewFile,BufRead *.proto set filetype=conf]])
 end
-
--- TODO: Move this somewhere else
--- Disable autostart of the LSP for paths that contain these strings
-lsp_autostart_blacklist = { "APSshare", "iocBoot", "dserv" }
-

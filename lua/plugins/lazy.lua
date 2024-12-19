@@ -3,7 +3,6 @@
 -- ==============================
 -- Lazy neovim plugin manager
 -- See `:Lazy help`
-
 local plugins = {
 
     -- measures startup time
