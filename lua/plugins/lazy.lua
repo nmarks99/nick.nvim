@@ -5,6 +5,14 @@
 -- See `:Lazy help`
 local plugins = {
 
+    -- themes
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    { "Shatur/neovim-ayu", priority = 1000 },
+    { "rose-pine/neovim", name = "rose-pine" },
+    { "shaunsingh/nord.nvim", name = "nord" },
+    { "ellisonleao/gruvbox.nvim", name = "gruvbox"},
+    { "folke/tokyonight.nvim", lazy = false, priority = 1000},
+
     -- fzf integration for neovim
     {
       "ibhagwan/fzf-lua",
@@ -38,12 +46,6 @@ local plugins = {
       dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
-    -- themes
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { "Shatur/neovim-ayu", priority = 1000 },
-    { "rose-pine/neovim", name = "rose-pine" },
-    { "shaunsingh/nord.nvim", name = "nord" },
-    { "ellisonleao/gruvbox.nvim", name = "gruvbox"},
 
     -- TODO comments manager
     {
@@ -61,7 +63,7 @@ local plugins = {
 	'saecki/crates.nvim',
 	tag = 'stable',
 	config = function()
-	    require('crates').setup()
+	    require('crates').setup({})
 	end,
     },
 
