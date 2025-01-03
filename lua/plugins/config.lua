@@ -4,7 +4,8 @@
 -- Configuration for miscellaneous plugins
 
 -- fzf-lua
-vim.keymap.set("n", "<c-P>", require('fzf-lua').files, { desc = "Fzf Files" })
+-- alt+p so we don't interfere with zellij ctrl+p
+vim.keymap.set("n", "<a-p>", require('fzf-lua').files, { desc = "Fzf Files" })
 
 -- oil
 require("oil").setup()
