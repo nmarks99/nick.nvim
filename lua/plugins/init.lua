@@ -12,6 +12,7 @@ local plugins = {
     { "shaunsingh/nord.nvim", name = "nord" },
     { "ellisonleao/gruvbox.nvim", name = "gruvbox"},
     { "folke/tokyonight.nvim", lazy = false, priority = 1000},
+    { "ficcdaf/ashen.nvim", lazy = false, priority = 1000},
 
     -- fzf integration for neovim
     {
