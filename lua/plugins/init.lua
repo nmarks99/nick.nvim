@@ -127,18 +127,6 @@ local plugins = {
 	},
     },
 
-    -- indentation guides (see :help ibl)
-    {
-	'lukas-reineke/indent-blankline.nvim',
-	main = 'ibl',
-	opts = {
-	    scope = {
-		show_start = true,
-		show_end = true,
-	    }
-	},
-    },
-
     -- Highlight, edit, and navigate code
     {
 	'nvim-treesitter/nvim-treesitter',
