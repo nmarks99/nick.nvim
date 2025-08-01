@@ -14,6 +14,7 @@ local plugins = {
     { "folke/tokyonight.nvim", lazy = false, priority = 1000},
     { "ficcdaf/ashen.nvim", lazy = false, priority = 1000},
     { "lurst/austere.vim", lazy = false, priority = 1000},
+    { "slugbyte/lackluster.nvim", lazy = false, priority = 1000},
 
     -- fzf integration for neovim
     {
@@ -67,13 +68,6 @@ local plugins = {
 	config = function()
 	    require('crates').setup({})
 	end,
-    },
-
-    -- bufferline tabs at the top
-    {
-	'akinsho/bufferline.nvim',
-	version = "*",
-	dependencies = 'nvim-tree/nvim-web-devicons',
     },
 
     -- File explorer tree

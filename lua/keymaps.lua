@@ -34,3 +34,7 @@ vim.keymap.set("v", ">", ">gv" )
 -- Move stuff up and down and adjust indent
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- cycle buffers
+vim.keymap.set('n', '<A-.>', [[:bnext<CR>]], {})
+vim.keymap.set('n', '<A-,>', [[:bprev<CR>]], {})

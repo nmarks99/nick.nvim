@@ -11,27 +11,6 @@ vim.keymap.set("n", "<a-p>", require('fzf-lua').files, { desc = "Fzf Files" })
 require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
--- bufferline
-require("bufferline").setup {
-  options = {
-    offsets = {
-      {
-        filetype = "NvimTree",
-        text = "File Tree",
-        highlight = "Directory",
-        separator = true -- use a "true" to enable the default, or set your own character
-      },
-    },
-    hover = {
-      enabled = true,
-      delay = 200,
-      reveal = { 'close' }
-    },
-  },
-}
-vim.keymap.set('n', '<A-.>', [[:BufferLineCycleNext<CR>]], {})
-vim.keymap.set('n', '<A-,>', [[:BufferLineCyclePrev<CR>]], {})
-
 -- Setup neovim lua configuration
 require('neodev').setup()
 
