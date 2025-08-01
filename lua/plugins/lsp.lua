@@ -49,7 +49,7 @@ local servers = {
     }
 
   },
-  ruff_lsp = {},
+  -- ruff_lsp = {},
   basedpyright = {},
   glsl_analyzer = {},
   -- gopls = {},
