@@ -27,6 +27,9 @@ local plugins = {
       end
     },
 
+    -- highlight trailing whitespace
+    "ntpeters/vim-better-whitespace",
+
     -- measures startup time
     "dstein64/vim-startuptime",
 
