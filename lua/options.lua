@@ -21,6 +21,7 @@ vim.opt.shiftwidth = 4          -- vim-slueth may change this
 vim.opt.belloff = "all"
 vim.opt.title = true
 vim.opt.incsearch = true
+vim.opt.winborder = 'rounded'
 vim.o.completeopt = 'menuone,noselect'
 vim.schedule(function()         -- sync system clipboard (need wl-wayland on wayland)
   vim.opt.clipboard = 'unnamedplus'

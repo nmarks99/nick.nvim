@@ -26,6 +26,9 @@ local plugins = {
 	require("fzf-lua").setup({
 	    files = {
 		previewer = false
+	    },
+	    buffers = {
+		previewer = false
 	    }
 	})
       end
