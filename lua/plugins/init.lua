@@ -6,42 +6,44 @@
 local plugins = {
 
     -- themes
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { "Shatur/neovim-ayu", priority = 1000 },
-    { "rose-pine/neovim", name = "rose-pine" },
-    { "shaunsingh/nord.nvim", name = "nord" },
-    { "ellisonleao/gruvbox.nvim", name = "gruvbox"},
-    { "folke/tokyonight.nvim", lazy = false, priority = 1000},
-    { "ficcdaf/ashen.nvim", lazy = false, priority = 1000},
-    { "lurst/austere.vim", lazy = false, priority = 1000},
-    { "slugbyte/lackluster.nvim", lazy = false, priority = 1000},
+    { "catppuccin/nvim", lazy = false, name = "catppuccin" },
+    { "rose-pine/neovim", lazy = false, name = "rose-pine" },
+    { "shaunsingh/nord.nvim", lazy = false, name = "nord" },
+    { "ellisonleao/gruvbox.nvim", lazy = false, name = "gruvbox" },
+    { "Shatur/neovim-ayu", lazy=false, priority = 1000 },
+    { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
+    { "ficcdaf/ashen.nvim", lazy = false, priority = 1000 },
+    { "lurst/austere.vim", lazy = false, priority = 1000 },
+    { "slugbyte/lackluster.nvim", lazy = false, priority = 1000 },
 
-    -- view
-    { "sindrets/diffview.nvim" },
+    -- git diff viewer
+    {
+	"sindrets/diffview.nvim",
+	cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose",
+	    "DiffviewRefresh", "DiffviewLog", "DiffviewFocusFiles", "DiffviewToggleFiles" },
+	config = function()
+	    require("diffview").setup({})
+	end,
+    },
 
     -- fzf integration for neovim
     {
-      "ibhagwan/fzf-lua",
-      -- optional for icon support
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      config = function()
-	-- calling `setup` is optional for customization
-	require("fzf-lua").setup({
-	    files = {
-		previewer = false
-	    },
-	    buffers = {
-		previewer = false
-	    }
-	})
-      end
+	"ibhagwan/fzf-lua",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+	config = function()
+	    require("fzf-lua").setup({
+		files = {
+		    previewer = false
+		},
+		buffers = {
+		    previewer = false
+		}
+	    })
+	end
     },
 
-    -- highlight trailing whitespace
+    -- deal with trailing whitespace
     "ntpeters/vim-better-whitespace",
-
-    -- measures startup time
-    "dstein64/vim-startuptime",
 
     -- Git related plugins
     'tpope/vim-fugitive',
@@ -56,29 +58,26 @@ local plugins = {
 
     -- File system tool
     {
-      'stevearc/oil.nvim',
-      opts = {},
-      -- Optional dependencies
-      dependencies = { "nvim-tree/nvim-web-devicons" },
+	'stevearc/oil.nvim',
+	opts = {},
+	dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
 
     -- TODO comments manager
     {
-      "folke/todo-comments.nvim",
-      dependencies = { "nvim-lua/plenary.nvim" },
-      opts = {
-	-- your configuration comes here
-	-- or leave it empty to use the default settings
-	-- refer to the configuration section below
-      }
+	"folke/todo-comments.nvim",
+	dependencies = { "nvim-lua/plenary.nvim" },
+	opts = {}
     },
 
     -- Nice tools for cargo
     {
 	'saecki/crates.nvim',
+	ft = {"toml"},
 	tag = 'stable',
 	config = function()
+	    print("Loading crates.nvim")
 	    require('crates').setup({})
 	end,
     },
@@ -103,7 +102,10 @@ local plugins = {
     },
 
     -- GLSL syntax highlighting
-    { 'tikhomirov/vim-glsl' },
+    {
+	'tikhomirov/vim-glsl',
+	ft = {"glsl"}
+    },
 
     -- Autocompletion
     {
@@ -143,28 +145,19 @@ local plugins = {
 	},
 	build = ':TSUpdate',
     },
-
-    -- start page for neovim
-    {
-	'goolord/alpha-nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
-	config = function ()
-	    require'alpha'.setup(require'alpha.themes.startify'.config)
-	end
-    },
 }
 
 -- ensure lazy.nvim is installed, call setup with above table
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  }
+    vim.fn.system {
+	'git',
+	'clone',
+	'--filter=blob:none',
+	'https://github.com/folke/lazy.nvim.git',
+	'--branch=stable', -- latest stable release
+	lazypath,
+    }
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup(plugins, {})

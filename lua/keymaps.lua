@@ -5,6 +5,10 @@
 -- Plugin specifc keymappings configured with plugins
 -- See `:help vim.keymap.set()`
 
+-- Retrun to normal mode in terminal buffer with ESC key
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
+
+-- Disable spacebar in normal and visual mode so it can be used as leader
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
