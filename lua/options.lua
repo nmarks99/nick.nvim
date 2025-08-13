@@ -20,8 +20,10 @@ vim.o.termguicolors = true      -- enable nice colors
 vim.opt.shiftwidth = 4          -- vim-slueth may change this
 vim.opt.belloff = "all"
 vim.opt.title = true
+vim.opt.swapfile = false
 vim.opt.incsearch = true
-vim.opt.winborder = 'rounded'
+vim.opt.winborder = 'rounded'   -- borders on popup windows
+vim.o.showmode = false          -- don't show mode since lualine shows it
 vim.o.completeopt = 'menuone,noselect'
 vim.schedule(function()         -- sync system clipboard (need wl-wayland on wayland)
   vim.opt.clipboard = 'unnamedplus'

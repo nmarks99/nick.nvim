@@ -31,6 +31,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- Clear highlights on search when pressing <Esc> in normal mode
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
 -- keep highlighted when shifting with < and >
 vim.keymap.set("v", "<", "<gv" )
 vim.keymap.set("v", ">", ">gv" )
