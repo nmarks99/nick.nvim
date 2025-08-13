@@ -3,12 +3,6 @@
 -- ==============================
 -- Configuration for miscellaneous plugins
 
--- fzf-lua
--- alt+p so we don't interfere with zellij ctrl+p
-vim.keymap.set("n", "<a-p>", require('fzf-lua').files, { desc = "Fzf Files" })
-vim.keymap.set("n", "<a-b>", require('fzf-lua').buffers, { desc = "Fzf Buffers" })
-vim.keymap.set("n", "<a-g>", require('fzf-lua').live_grep, { desc = "Fzf Buffers" })
-
 -- oil
 require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

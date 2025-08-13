@@ -29,6 +29,11 @@ local plugins = {
     -- fzf integration for neovim
     {
 	"ibhagwan/fzf-lua",
+	keys = {
+	    { "<A-p>", "<cmd>FzfLua files<cr>",    desc = "Fzf Files" },
+	    { "<A-b>", "<cmd>FzfLua buffers<cr>",  desc = "Fzf Buffers" },
+	    { "<A-g>", "<cmd>FzfLua live_grep<cr>", desc = "Fzf Live Grep" },
+	},
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 	    require("fzf-lua").setup({
@@ -127,6 +132,7 @@ local plugins = {
     -- status line at the bottom
     {
 	'nvim-lualine/lualine.nvim',
+	event = "VimEnter",
 	opts = {
 	    options = {
 		icons_enabled = true,
