@@ -68,14 +68,6 @@ local plugins = {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
-
-    -- TODO comments manager
-    {
-	"folke/todo-comments.nvim",
-	dependencies = { "nvim-lua/plenary.nvim" },
-	opts = {}
-    },
-
     -- Nice tools for cargo
     {
 	'saecki/crates.nvim',
@@ -94,44 +86,12 @@ local plugins = {
 	"mason-org/mason.nvim",
 	opts = {}
     },
-    -- LSP Configuration & Plugins
-    --{
-	--'neovim/nvim-lspconfig',
-	--dependencies = {
-	    -- Automatically install LSPs to stdpath for neovim
-	 --   { 'williamboman/mason.nvim', config = true },
-	   -- 'williamboman/mason-lspconfig.nvim',
-
-	    -- Useful status updates for LSP
-	    --{ 'j-hui/fidget.nvim', opts = {} },
-
-	    -- Additional lua configuration, makes nvim stuff amazing!
-	    --'folke/neodev.nvim',
-	--},
-   -- },
 
     -- GLSL syntax highlighting
     {
 	'tikhomirov/vim-glsl',
 	ft = {"glsl"}
     },
-
-    -- Autocompletion
-   -- {
-	--'hrsh7th/nvim-cmp',
-	--dependencies = {
-	    -- Snippet Engine & its associated nvim-cmp source
-	   -- 'L3MON4D3/LuaSnip',
-	   -- 'saadparwaiz1/cmp_luasnip',
-
-	    -- Adds LSP completion capabilities
-	    --'hrsh7th/cmp-nvim-lsp',
-	    --'hrsh7th/cmp-path',
-
-	    -- Adds a number of user-friendly snippets
-	  --  'rafamadriz/friendly-snippets',
-	--},
-    --},
 
     -- status line at the bottom
     {
@@ -172,9 +132,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup(plugins, {})
 
--- ==================================================
--- require("plugins.config")
--- require("plugins.lsp")
 
 
 -- ==============================
@@ -185,9 +142,6 @@ require('lazy').setup(plugins, {})
 -- oil
 require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-
--- Setup neovim lua configuration
--- require('neodev').setup()
 
 -- nvim-tree
 vim.g.loaded_netrw = 1
@@ -202,84 +156,6 @@ vim.keymap.set('n', '<BSLASH>n', [[:NvimTreeToggle<CR>]], {})
 require("lazy").setup({
     {"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"}
 })
--- -- tree-sitter
--- -- See `:help nvim-treesitter`
--- -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
--- vim.defer_fn(function()
-  -- require('nvim-treesitter.configs').setup {
-    -- -- Add languages to be installed here that you want installed for treesitter
-    -- ensure_installed = {
-      -- 'c',
-      -- 'cpp',
-      -- 'python',
-      -- 'lua',
-      -- 'rust',
-      -- 'bash',
-      -- 'go',
-      -- 'vim',
-      -- 'vimdoc',
-      -- 'javascript',
-      -- 'typescript',
-    -- },
---
-    -- auto_install = false,
-    -- highlight = { enable = true },
-    -- indent = { enable = true },
-    -- incremental_selection = {
-      -- enable = true,
-      -- keymaps = {
-        -- init_selection = '<c-space>',
-        -- node_incremental = '<c-space>',
-        -- scope_incremental = '<c-s>',
-        -- node_decremental = '<M-space>',
-      -- },
-    -- },
-    -- textobjects = {
-      -- select = {
-        -- enable = true,
-        -- lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-        -- keymaps = {
-          -- -- You can use the capture groups defined in textobjects.scm
-          -- ['aa'] = '@parameter.outer',
-          -- ['ia'] = '@parameter.inner',
-          -- ['af'] = '@function.outer',
-          -- ['if'] = '@function.inner',
-          -- ['ac'] = '@class.outer',
-          -- ['ic'] = '@class.inner',
-        -- },
-      -- },
-      -- move = {
-        -- enable = true,
-        -- set_jumps = true, -- whether to set jumps in the jumplist
-        -- goto_next_start = {
-          -- [']m'] = '@function.outer',
-          -- [']]'] = '@class.outer',
-        -- },
-        -- goto_next_end = {
-          -- [']M'] = '@function.outer',
-          -- [']['] = '@class.outer',
-        -- },
-        -- goto_previous_start = {
-          -- ['[m'] = '@function.outer',
-          -- ['[['] = '@class.outer',
-        -- },
-        -- goto_previous_end = {
-          -- ['[M'] = '@function.outer',
-          -- ['[]'] = '@class.outer',
-        -- },
-      -- },
-      -- swap = {
-        -- enable = true,
-        -- swap_next = {
-          -- ['<leader>a'] = '@parameter.inner',
-        -- },
-        -- swap_previous = {
-          -- ['<leader>A'] = '@parameter.inner',
-        -- },
-      -- },
-    -- },
-  -- }
--- end, 0)
 
 -- nerd commenter
 vim.g.NERDCompactSexyComs = 1
@@ -290,8 +166,5 @@ vim.g.NERDSpaceDelims = 1
 vim.cmd [[
   let g:NERDCustomDelimiters = { 'c': { 'left': '//', 'right': ''} }
 ]]
-vim.keymap.set({ 'n', 'v' }, '++', [[<plug>NERDCommenterToggle]], {})
+-- vim.keymap.set({ 'n', 'v' }, '++', [[<plug>NERDCommenterToggle]], {})
 vim.keymap.set({ 'n', 'v' }, '<leader>/', [[<plug>NERDCommenterToggle]], {})
-
--- todo comments
-require("todo-comments").setup();
