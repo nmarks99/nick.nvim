@@ -15,8 +15,33 @@ vim.lsp.config.lua_ls = {
   root_markers = { ".luarc.json", ".luarc.jsonc", ".git" }
 }
 
+-- basedpyright
+vim.lsp.config.basedpyright = {
+    cmd = { 'basedpyright-langserver', '--stdio' },
+    filetypes = { 'python' },
+    root_markers = {
+        'pyproject.toml',
+        'setup.py',
+        'setup.cfg',
+        'requirements.txt',
+        'Pipfile',
+        'pyrightconfig.json',
+        '.git',
+    },
+    settings = {
+        basedpyright = {
+            analysis = {
+                typeCheckingMode = "basic",
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = 'openFilesOnly',
+            },
+        },
+    },
+}
+
 -- enable all the severs
-vim.lsp.enable({'lua_ls', "clangd"})
+vim.lsp.enable({'lua_ls', "clangd", "basedpyright"})
 
 -- automatically attach LSPs
 vim.api.nvim_create_autocmd('LspAttach', {
