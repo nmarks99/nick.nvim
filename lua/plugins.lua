@@ -153,10 +153,6 @@ require("nvim-tree").setup({
 })
 vim.keymap.set('n', '<BSLASH>n', [[:NvimTreeToggle<CR>]], {})
 
-require("lazy").setup({
-    {"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"}
-})
-
 -- nerd commenter
 vim.g.NERDCompactSexyComs = 1
 vim.g.NERDCommentEmptyLines = 1
