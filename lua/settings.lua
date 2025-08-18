@@ -84,3 +84,17 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- cycle buffers
 vim.keymap.set('n', '<A-.>', [[:bnext<CR>]], {})
 vim.keymap.set('n', '<A-,>', [[:bprev<CR>]], {})
+
+-- Popup menu (insert mode)
+-- <C-j> goes to next item,
+-- <C-k> goes to previous
+-- <CR> to confirm selection
+vim.keymap.set('i', '<C-j>', function()
+  return vim.fn.pumvisible() == 1 and '<C-n>' or '<C-n>'
+end, { expr = true })
+vim.keymap.set('i', '<C-k>', function()
+  return vim.fn.pumvisible() == 1 and '<C-p>' or '<C-p>'
+end, { expr = true })
+vim.keymap.set('i', '<CR>', function()
+  return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
+end, { expr = true })
