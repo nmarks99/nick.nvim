@@ -37,11 +37,13 @@ if package.config:sub(1, 1) == '/' then
   vim.cmd([[autocmd BufNewFile,BufRead *.substitutions set filetype=conf]])
   vim.cmd([[autocmd BufNewFile,BufRead *.proto set filetype=conf]])
 end
+
+
 -- ==============================
 --            Keymaps
 -- ==============================
--- Keymappings for built in Neovim features.
--- Plugin specifc keymappings configured with plugins
+-- Keymappings for native Neovim features.
+-- Plugin specific keymappings configured with plugins
 -- See `:help vim.keymap.set()`
 
 -- Retrun to normal mode in terminal buffer with ESC key
@@ -55,8 +57,13 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '[d', function()
+    vim.diagnostic.jump({count = -1, float = true})
+end,{ desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', function()
+    vim.diagnostic.jump({count = 1, float = true})
+end,{ desc = 'Go to previous diagnostic message' })
+
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
@@ -98,3 +105,12 @@ end, { expr = true })
 vim.keymap.set('i', '<CR>', function()
   return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
 end, { expr = true })
+
+-- Navigate splits with Alt+h,j,k,l only if not in zellij,
+-- to avoid confusion between keybinds
+if not vim.env.ZELLIJ then
+    vim.keymap.set("n", "<A-h>", "<C-w><C-h>" )
+    vim.keymap.set("n", "<A-j>", "<C-w><C-j>" )
+    vim.keymap.set("n", "<A-k>", "<C-w><C-k>" )
+    vim.keymap.set("n", "<A-l>", "<C-w><C-l>" )
+end
