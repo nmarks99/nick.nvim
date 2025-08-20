@@ -72,3 +72,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set("n", "gl", vim.diagnostic.open_float, keymap_opts)
     end,
 })
+
+vim.api.nvim_create_user_command("LspStop", function(opts)
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    if #clients == 0 then
+        vim.notify("No LSP client attached", vim.log.levels.WARN)
+    else
+        vim.lsp.stop_client(clients)
+        vim.notify("Stopped " .. #clients .. " LSP client(s)")
+    end
+end, {})
