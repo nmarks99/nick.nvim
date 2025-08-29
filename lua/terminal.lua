@@ -1,3 +1,9 @@
+-- ==============================
+--           Terminal
+-- ==============================
+-- See `:help terminal
+-- Settings for built in terminal including floating
+-- toggleable terminal and useful keymaps
 
 local state = {
     floating = {
@@ -30,23 +36,23 @@ local function open_floating_window(opts)
         row = row,
         col = col,
         style = 'minimal',
-        border = 'rounded',  -- default border
+        border = 'rounded', -- default border
     })
 
     -- Optional buffer options
     if opts.buf_options then
         for k, v in pairs(opts.buf_options) do
             -- vim.api.nvim_buf_set_option(buf, k, v)
-            vim.api.nvim_set_option_value(k, v, {buf = buf})
+            vim.api.nvim_set_option_value(k, v, { buf = buf })
         end
     end
 
-    return {buf = buf, win = win}
+    return { buf = buf, win = win }
 end
 
 local function toggle_terminal()
     if not vim.api.nvim_win_is_valid(state.floating.win) then
-        state.floating = open_floating_window({buf = state.floating.buf})
+        state.floating = open_floating_window({ buf = state.floating.buf })
         if vim.bo[state.floating.buf].buftype ~= 'terminal' then
             vim.cmd.terminal()
             vim.cmd.startinsert()
@@ -58,4 +64,4 @@ local function toggle_terminal()
 end
 
 vim.api.nvim_create_user_command("FloatingTerminal", toggle_terminal, {})
-vim.keymap.set({'n', 't'}, '<A-t>', toggle_terminal)
+vim.keymap.set({ 'n', 't' }, '<A-t>', toggle_terminal)

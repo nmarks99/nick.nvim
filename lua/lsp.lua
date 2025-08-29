@@ -10,9 +10,9 @@ vim.lsp.config.clangd = {
 
 -- lua_ls
 vim.lsp.config.lua_ls = {
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  root_markers = { ".luarc.json", ".luarc.jsonc", ".git" }
+    cmd = { "lua-language-server" },
+    filetypes = { "lua" },
+    root_markers = { ".luarc.json", ".luarc.jsonc", ".git" }
 }
 
 -- basedpyright
@@ -41,7 +41,7 @@ vim.lsp.config.basedpyright = {
 }
 
 -- enable all the severs
-vim.lsp.enable({'lua_ls', "clangd", "basedpyright"})
+vim.lsp.enable({ 'lua_ls', "clangd", "basedpyright" })
 
 -- automatically attach LSPs and set up LSP keymaps
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         if not client then return end
         if client:supports_method('textDocument/completion') then
-          vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
+            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
         end
 
         -- trigger completion with ctrl+space in insert mode
@@ -73,12 +73,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-vim.api.nvim_create_user_command("LspStop", function(opts)
+vim.api.nvim_create_user_command("LspStop", function(_)
     local clients = vim.lsp.get_clients({ bufnr = 0 })
     if #clients == 0 then
         vim.notify("No LSP client attached", vim.log.levels.WARN)
     else
         vim.lsp.stop_client(clients)
         vim.notify("Stopped " .. #clients .. " LSP client(s)")
+    end
+end, {})
+
+vim.api.nvim_create_user_command("LspFormat", function(_)
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    if #clients == 0 then
+        vim.notify("No LSP client attached", vim.log.levels.WARN)
+    else
+        vim.lsp.buf.format()
     end
 end, {})
