@@ -114,3 +114,12 @@ if not vim.env.ZELLIJ then
     vim.keymap.set("n", "<A-k>", "<C-w><C-k>")
     vim.keymap.set("n", "<A-l>", "<C-w><C-l>")
 end
+
+-- Automatically enable treesitter (found from reddit comment)
+local group = vim.api.nvim_create_augroup("auto_start_treesitter", {})
+vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+    end,
+})
