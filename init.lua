@@ -1,5 +1,5 @@
 require("settings")
 require("plugins")
 require("lsp")
-require("theme")
 require("extras")
+pcall(require, "theme")
