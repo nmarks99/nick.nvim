@@ -16,34 +16,24 @@ vim.lsp.config.lua_ls = {
     root_markers = { ".luarc.json", ".luarc.jsonc", ".git" }
 }
 
--- basedpyright
-vim.lsp.config.basedpyright = {
-    cmd = { 'basedpyright-langserver', '--stdio' },
-    filetypes = { 'python' },
-    root_markers = {
-        'pyproject.toml',
-        'setup.py',
-        'setup.cfg',
-        'requirements.txt',
-        'Pipfile',
-        'pyrightconfig.json',
-        '.git',
-    },
-    settings = {
-        basedpyright = {
-            analysis = {
-                typeCheckingMode = "basic",
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-                diagnosticMode = 'openFilesOnly',
-            },
-        },
-    },
-}
+-- Define the 'ty' configuration manually since it's not yet built-in
+vim.lsp.config('ty', {
+  cmd = { 'ty', 'server' },  -- "ty server" starts the LSP
+  filetypes = { 'python' },
+  root_markers = { 'pyproject.toml', 'ty.toml', '.git' }, -- Helps Neovim find the project root
+  settings = {
+    ty = {}
+  }
+})
+
+-- vim.lsp.config('ruff', {
+  -- init_options = {
+    -- settings = {}
+  -- }
+-- })
 
 -- enable all the severs
--- vim.lsp.enable({ "lua_ls", "clangd", "basedpyright" })
-vim.lsp.enable({"lua_ls", "clangd", "basedpyright"})
+vim.lsp.enable({"lua_ls", "clangd", "ty"})
 
 -- automatically attach LSPs and set up LSP keymaps
 vim.api.nvim_create_autocmd('LspAttach', {
