@@ -6,16 +6,17 @@
 local plugins = {
 
     -- themes
-    { "catppuccin/nvim",          lazy = false, name = "catppuccin" },
-    { "rose-pine/neovim",         lazy = false, name = "rose-pine" },
-    { "shaunsingh/nord.nvim",     lazy = false, name = "nord" },
-    { "ellisonleao/gruvbox.nvim", lazy = false, name = "gruvbox" },
-    { "Shatur/neovim-ayu",        lazy = false, priority = 1000 },
-    { "folke/tokyonight.nvim",    lazy = false, priority = 1000 },
-    { "ficcdaf/ashen.nvim",       lazy = false, priority = 1000 },
-    { "lurst/austere.vim",        lazy = false, priority = 1000 },
-    { "slugbyte/lackluster.nvim", lazy = false, priority = 1000 },
-    { "abreujp/scholar.nvim", lazy = false, priority = 1000 },
+    { "catppuccin/nvim",              lazy = false, name = "catppuccin" },
+    { "rose-pine/neovim",             lazy = false, name = "rose-pine" },
+    { "shaunsingh/nord.nvim",         lazy = false, name = "nord" },
+    { "ellisonleao/gruvbox.nvim",     lazy = false, name = "gruvbox" },
+    { "Shatur/neovim-ayu",            lazy = false, priority = 1000 },
+    { "folke/tokyonight.nvim",        lazy = false, priority = 1000 },
+    { "ficcdaf/ashen.nvim",           lazy = false, priority = 1000 },
+    { "lurst/austere.vim",            lazy = false, priority = 1000 },
+    { "slugbyte/lackluster.nvim",     lazy = false, priority = 1000 },
+    { "abreujp/scholar.nvim",         lazy = false, priority = 1000 },
+    { "e-ink-colorscheme/e-ink.nvim", lazy = false, priority = 1000 },
 
     -- git diff viewer
     {

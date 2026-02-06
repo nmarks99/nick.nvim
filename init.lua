@@ -2,4 +2,6 @@ require("settings")
 require("plugins")
 require("lsp")
 require("extras")
-pcall(require, "theme")
+
+-- optional local settings
+pcall(require, "local")

@@ -4,6 +4,7 @@
 -- clangd
 vim.lsp.config.clangd = {
     cmd = { 'clangd', '--background-index', "--header-insertion=never" },
+    -- cmd = { 'clangd', "--header-insertion=never" },
     root_markers = { 'compile_commands.json', 'compile_flags.txt' },
     filetypes = { 'c', 'cpp' },
 }
@@ -41,7 +42,8 @@ vim.lsp.config.basedpyright = {
 }
 
 -- enable all the severs
-vim.lsp.enable({ 'lua_ls', "clangd", "basedpyright" })
+-- vim.lsp.enable({ "lua_ls", "clangd", "basedpyright" })
+vim.lsp.enable({"lua_ls", "clangd", "basedpyright"})
 
 -- automatically attach LSPs and set up LSP keymaps
 vim.api.nvim_create_autocmd('LspAttach', {

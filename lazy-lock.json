@@ -4,6 +4,7 @@
   "catppuccin": { "branch": "main", "commit": "3aaf3ab60221bca8edb1354e41bd514a22c89de2" },
   "crates.nvim": { "branch": "main", "commit": "afcd1cc3eeceb5783676fc8464389b9216a29d05" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
+  "e-ink.nvim": { "branch": "main", "commit": "a0f003a0c6e2952abd9b73ef89d56c65e6c46f00" },
   "fzf-lua": { "branch": "main", "commit": "8f031ed41e13c99b5fbd467b46d4a752850bae35" },
   "gruvbox": { "branch": "main", "commit": "58a2cda2e953a99e2f87c12b7fb4602da4e0709c" },
   "lackluster.nvim": { "branch": "main", "commit": "b247a6f51cb43e49f3f753f4a59553b698bf5438" },
