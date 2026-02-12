@@ -13,7 +13,6 @@ local plugins = {
     { "Shatur/neovim-ayu",            lazy = false, priority = 1000 },
     { "folke/tokyonight.nvim",        lazy = false, priority = 1000 },
     { "ficcdaf/ashen.nvim",           lazy = false, priority = 1000 },
-    { "lurst/austere.vim",            lazy = false, priority = 1000 },
     { "slugbyte/lackluster.nvim",     lazy = false, priority = 1000 },
     { "abreujp/scholar.nvim",         lazy = false, priority = 1000 },
     { "e-ink-colorscheme/e-ink.nvim", lazy = false, priority = 1000 },
