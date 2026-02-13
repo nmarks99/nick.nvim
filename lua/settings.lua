@@ -38,7 +38,6 @@ if package.config:sub(1, 1) == '/' then
     vim.cmd([[autocmd BufNewFile,BufRead *.proto set filetype=conf]])
 end
 
-
 -- ==============================
 --            Keymaps
 -- ==============================
@@ -105,15 +104,6 @@ end, { expr = true })
 vim.keymap.set('i', '<CR>', function()
     return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
 end, { expr = true })
-
--- Navigate splits with Alt+h,j,k,l only if not in zellij,
--- to avoid confusion between keybinds
-if not vim.env.ZELLIJ then
-    vim.keymap.set("n", "<A-h>", "<C-w><C-h>")
-    vim.keymap.set("n", "<A-j>", "<C-w><C-j>")
-    vim.keymap.set("n", "<A-k>", "<C-w><C-k>")
-    vim.keymap.set("n", "<A-l>", "<C-w><C-l>")
-end
 
 -- Automatically enable treesitter (found from reddit comment)
 local group = vim.api.nvim_create_augroup("auto_start_treesitter", {})

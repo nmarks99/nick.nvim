@@ -49,6 +49,19 @@ local plugins = {
     },
 
     {
+        "swaits/zellij-nav.nvim",
+        lazy = true,
+        event = "VeryLazy",
+        keys = {
+            { "<A-h>", "<cmd>ZellijNavigateLeftTab<cr>",  { silent = true, desc = "navigate left or tab"  } },
+            { "<A-j>", "<cmd>ZellijNavigateDown<cr>",  { silent = true, desc = "navigate down"  } },
+            { "<A-k>", "<cmd>ZellijNavigateUp<cr>",    { silent = true, desc = "navigate up"    } },
+            { "<A-l>", "<cmd>ZellijNavigateRightTab<cr>", { silent = true, desc = "navigate right or tab" } },
+        },
+        opts = {},
+    },
+
+    {
         "lervag/vimtex",
         lazy = false, -- we don't want to lazy load VimTeX
         -- tag = "v2.15", -- uncomment to pin to a specific release
@@ -176,3 +189,11 @@ vim.cmd [[
 ]]
 -- vim.keymap.set({ 'n', 'v' }, '++', [[<plug>NERDCommenterToggle]], {})
 vim.keymap.set({ 'n', 'v' }, '<leader>/', [[<plug>NERDCommenterToggle]], {})
+
+-- zellij-nav.nvim
+-- Ensures that when exiting neovim, Zellij returns to normal mode
+-- Note zellij autolock plugin must be set up in zellij config
+vim.api.nvim_create_autocmd("VimLeave", {
+    pattern = "*",
+    command = "silent !zellij action switch-mode normal"
+})
