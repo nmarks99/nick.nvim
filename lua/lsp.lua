@@ -13,7 +13,18 @@ vim.lsp.config.clangd = {
 vim.lsp.config.lua_ls = {
     cmd = { "lua-language-server" },
     filetypes = { "lua" },
-    root_markers = { ".luarc.json", ".luarc.jsonc", ".git" }
+    root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
+    settings = {
+        -- ignore some globals brought in by EPICS lua module in EPICS projects
+        Lua = { diagnostics = { globals = {
+            'dbLoadDatabase', 'dbLoadRecords', 'iocInit',
+            'epicsEnvSet', 'epicsEnvShow', 'cd', 'pwd',
+            'luash', 'luaCmd', 'luaSpawn', 'luaPortDriver',
+            'exec', 'pdbbase', 'iocsh',
+            'OutTerminator', 'InTerminator',
+            'WriteTimeout', 'ReadTimeout', 'WriteReadTimeout',
+      }}}
+    },
 }
 
 -- Define the 'ty' configuration manually since it's not yet built-in
