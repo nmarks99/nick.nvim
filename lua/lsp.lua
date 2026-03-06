@@ -4,7 +4,6 @@
 -- clangd
 vim.lsp.config.clangd = {
     cmd = { 'clangd', '--background-index', "--header-insertion=never" },
-    -- cmd = { 'clangd', "--header-insertion=never" },
     root_markers = { 'compile_commands.json', 'compile_flags.txt' },
     filetypes = { 'c', 'cpp' },
 }
@@ -45,6 +44,20 @@ vim.lsp.config('ty', {
 
 -- enable all the severs
 vim.lsp.enable({"lua_ls", "clangd", "ty"})
+
+-- Tell the server the capability of foldingRange,
+-- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
+for _, ls in ipairs(language_servers) do
+    require('lspconfig')[ls].setup({
+        capabilities = capabilities
+    })
+end
 
 -- automatically attach LSPs and set up LSP keymaps
 vim.api.nvim_create_autocmd('LspAttach', {

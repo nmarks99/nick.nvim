@@ -27,6 +27,27 @@ local plugins = {
         end,
     },
 
+    -- Makes folds nicer
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = { "kevinhwang91/promise-async" },
+        init = function()
+            vim.o.foldcolumn = "0"
+            vim.foldlevel = 99
+            vim.o.foldlevelstart = 99
+            vim.o.foldenable = true
+            vim.opt.fillchars = {
+                fold = " ",
+                foldopen = "",
+                foldsep = " ",
+                foldclose = "",
+            }
+        end,
+        config = function()
+            require('ufo').setup()
+        end
+    },
+
     -- fzf integration for neovim
     {
         "ibhagwan/fzf-lua",
