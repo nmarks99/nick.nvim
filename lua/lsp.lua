@@ -36,14 +36,14 @@ vim.lsp.config('ty', {
   }
 })
 
--- vim.lsp.config('ruff', {
-  -- init_options = {
-    -- settings = {}
-  -- }
--- })
+vim.lsp.config('ruff', {
+  init_options = {
+    settings = {}
+  }
+})
 
 -- enable all the severs
-vim.lsp.enable({"lua_ls", "clangd", "ty"})
+vim.lsp.enable({"lua_ls", "clangd", "ty", "ruff"})
 
 -- Tell the server the capability of foldingRange,
 -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
