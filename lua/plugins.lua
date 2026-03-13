@@ -17,6 +17,8 @@ local plugins = {
     { "abreujp/scholar.nvim",         lazy = false, priority = 1000 },
     { "e-ink-colorscheme/e-ink.nvim", lazy = false, priority = 1000 },
 
+    { "lewis6991/gitsigns.nvim" },
+
     -- git diff viewer
     {
         "sindrets/diffview.nvim",
