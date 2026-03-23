@@ -17,7 +17,21 @@ local plugins = {
     { "abreujp/scholar.nvim",         lazy = false, priority = 1000 },
     { "e-ink-colorscheme/e-ink.nvim", lazy = false, priority = 1000 },
 
+    -- git signs in the column to the left of line numbers
     { "lewis6991/gitsigns.nvim" },
+
+    -- "render" markdown in neovim
+    {
+        "OXY2DEV/markview.nvim",
+        lazy = false,
+        config = function()
+            require("markview").setup({
+                preview = {
+                    enable = false, -- Disables automatic rendering
+                },
+            })
+        end
+    },
 
     -- git diff viewer
     {
