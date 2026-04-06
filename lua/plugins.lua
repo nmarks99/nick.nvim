@@ -90,9 +90,9 @@ local plugins = {
         lazy = true,
         event = "VeryLazy",
         keys = {
-            { "<A-h>", "<cmd>ZellijNavigateLeftTab<cr>",  { silent = true, desc = "navigate left or tab"  } },
-            { "<A-j>", "<cmd>ZellijNavigateDown<cr>",  { silent = true, desc = "navigate down"  } },
-            { "<A-k>", "<cmd>ZellijNavigateUp<cr>",    { silent = true, desc = "navigate up"    } },
+            { "<A-h>", "<cmd>ZellijNavigateLeftTab<cr>",  { silent = true, desc = "navigate left or tab" } },
+            { "<A-j>", "<cmd>ZellijNavigateDown<cr>",     { silent = true, desc = "navigate down" } },
+            { "<A-k>", "<cmd>ZellijNavigateUp<cr>",       { silent = true, desc = "navigate up" } },
             { "<A-l>", "<cmd>ZellijNavigateRightTab<cr>", { silent = true, desc = "navigate right or tab" } },
         },
         opts = {},
@@ -177,6 +177,18 @@ local plugins = {
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
         build = ':TSUpdate',
+        opts = {
+            indent = {
+                enable = true,
+            },
+            -- Include other basic configs here if they are missing
+            highlight = {
+                enable = true,
+            },
+        },
+        config = function(_, opts)
+            require('nvim-treesitter.configs').setup(opts)
+        end,
     },
 }
 
