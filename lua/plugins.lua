@@ -6,16 +6,17 @@
 local plugins = {
 
     -- themes
-    { "catppuccin/nvim",              lazy = false, name = "catppuccin" },
-    { "rose-pine/neovim",             lazy = false, name = "rose-pine" },
-    { "shaunsingh/nord.nvim",         lazy = false, name = "nord" },
-    { "ellisonleao/gruvbox.nvim",     lazy = false, name = "gruvbox" },
+    { "catppuccin/nvim",              lazy = false, priority = 1000, name = "catppuccin" },
+    { "rose-pine/neovim",             lazy = false, priority = 1000, name = "rose-pine" },
+    { "shaunsingh/nord.nvim",         lazy = false, priority = 1000, name = "nord" },
+    { "ellisonleao/gruvbox.nvim",     lazy = false, priority = 1000, name = "gruvbox" },
     { "Shatur/neovim-ayu",            lazy = false, priority = 1000 },
     { "folke/tokyonight.nvim",        lazy = false, priority = 1000 },
     { "ficcdaf/ashen.nvim",           lazy = false, priority = 1000 },
     { "slugbyte/lackluster.nvim",     lazy = false, priority = 1000 },
     { "abreujp/scholar.nvim",         lazy = false, priority = 1000 },
     { "e-ink-colorscheme/e-ink.nvim", lazy = false, priority = 1000 },
+    { "nmarks99/mfd.nvim", lazy = false, priority = 1000 },
 
     -- git signs in the column to the left of line numbers
     { "lewis6991/gitsigns.nvim" },
