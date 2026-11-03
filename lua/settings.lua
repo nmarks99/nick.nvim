@@ -36,6 +36,7 @@ end)
 if package.config:sub(1, 1) == '/' then
     vim.cmd([[autocmd BufNewFile,BufRead *.cmd set filetype=conf]])
     vim.cmd([[autocmd BufNewFile,BufRead *.db set filetype=conf]])
+    vim.cmd([[autocmd BufNewFile,BufRead *.template set filetype=conf]])
     vim.cmd([[autocmd BufNewFile,BufRead *.iocsh set filetype=conf]])
     vim.cmd([[autocmd BufNewFile,BufRead *.substitutions set filetype=conf]])
     vim.cmd([[autocmd BufNewFile,BufRead *.proto set filetype=conf]])
