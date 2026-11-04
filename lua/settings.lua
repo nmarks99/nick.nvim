@@ -28,9 +28,16 @@ vim.opt.incsearch = true
 vim.opt.winborder = 'rounded' -- borders on popup windows
 vim.opt.showmode = false      -- don't show mode since lualine shows it
 vim.opt.completeopt = 'menuone,noselect,fuzzy'
-vim.schedule(function()       -- sync system clipboard (need wl-wayland on wayland)
-    vim.opt.clipboard = 'unnamedplus'
-end)
+vim.g.clipboard = 'osc52'
+vim.opt.clipboard = ''
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+        if vim.v.event.operator == 'y' and vim.v.event.regname == '' then
+            require('vim.ui.clipboard.osc52').copy('+')(vim.v.event.regcontents)
+        end
+    end,
+})
 
 -- Set filetypes for several EPICS related files
 if package.config:sub(1, 1) == '/' then
