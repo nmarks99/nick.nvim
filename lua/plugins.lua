@@ -18,25 +18,32 @@ local plugins = {
     { "e-ink-colorscheme/e-ink.nvim", lazy = false, priority = 1000 },
     { "nmarks99/mfd.nvim", lazy = false, priority = 1000 },
 
+    { "pablopunk/pi.nvim" },
+
     -- Smarter splits for navigating between splits and multiplexer panes
     {
         'smart-splits-nvim/smart-splits.nvim',
         version = '^3.0.0',
         lazy = false,
-        opts = { -- Plugin Configuration
-            mux = {
-              backend = 'smart-splits-backend-kitty',
-            },
-            move = {
-                at_edge = function(ctx)
-                    if ctx.direction == 'left' then
-                        vim.system({ 'kitten', '@', 'action', 'previous_tab' })
-                    elseif ctx.direction == 'right' then
-                        vim.system({ 'kitten', '@', 'action', 'next_tab' })
-                    end
-                end,
-            },
-        },
+        opts = function() -- Plugin Configuration
+            if not vim.env.KITTY_WINDOW_ID then
+                return { mux = { warn_if_unusable = false } }
+            end
+            return {
+                mux = {
+                  backend = 'smart-splits-backend-kitty',
+                },
+                move = {
+                    at_edge = function(ctx)
+                        if ctx.direction == 'left' then
+                            vim.system({ 'kitten', '@', 'action', 'previous_tab' })
+                        elseif ctx.direction == 'right' then
+                            vim.system({ 'kitten', '@', 'action', 'next_tab' })
+                        end
+                    end,
+                },
+            }
+        end,
         keys = {
             { '<A-h>', function() require('smart-splits').move_cursor_left() end,  desc = 'navigate left or tab' },
             { '<A-j>', function() require('smart-splits').move_cursor_down() end,  desc = 'navigate down' },
