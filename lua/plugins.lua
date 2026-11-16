@@ -21,17 +21,12 @@ local plugins = {
     -- git signs in the column to the left of line numbers
     { "lewis6991/gitsigns.nvim" },
 
-    -- "render" markdown in neovim
     {
-        "OXY2DEV/markview.nvim",
-        lazy = false,
-        config = function()
-            require("markview").setup({
-                preview = {
-                    enable = false, -- Disables automatic rendering
-                },
-            })
-        end
+        "barrettruth/preview.nvim",
+        url = "https://forge.barrettruth.com/barrettruth/preview.nvim",
+        init = function()
+            vim.g.preview = {markdown = true}
+        end,
     },
 
     {
