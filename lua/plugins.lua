@@ -18,6 +18,40 @@ local plugins = {
     { "e-ink-colorscheme/e-ink.nvim", lazy = false, priority = 1000 },
     { "nmarks99/mfd.nvim", lazy = false, priority = 1000 },
 
+    -- Smarter splits for navigating between splits and multiplexer panes
+    {
+        'smart-splits-nvim/smart-splits.nvim',
+        version = '^3.0.0',
+        lazy = false,
+        opts = { -- Plugin Configuration
+            mux = {
+              backend = 'smart-splits-backend-kitty',
+            },
+            move = {
+                at_edge = function(ctx)
+                    if ctx.direction == 'left' then
+                        vim.system({ 'kitten', '@', 'action', 'previous_tab' })
+                    elseif ctx.direction == 'right' then
+                        vim.system({ 'kitten', '@', 'action', 'next_tab' })
+                    end
+                end,
+            },
+        },
+        keys = {
+            { '<A-h>', function() require('smart-splits').move_cursor_left() end,  desc = 'navigate left or tab' },
+            { '<A-j>', function() require('smart-splits').move_cursor_down() end,  desc = 'navigate down' },
+            { '<A-k>', function() require('smart-splits').move_cursor_up() end,    desc = 'navigate up' },
+            { '<A-l>', function() require('smart-splits').move_cursor_right() end, desc = 'navigate right or tab' },
+        },
+        dependencies = {
+            {
+              'smart-splits-nvim/backend-kitty',
+              module = 'smart-splits-backend-kitty',
+              build = "./kitten/install_relative_resize.lua",
+            },
+        },
+    },
+
     -- git signs in the column to the left of line numbers
     { "lewis6991/gitsigns.nvim" },
 
@@ -89,19 +123,6 @@ local plugins = {
                 }
             })
         end
-    },
-
-    {
-        "swaits/zellij-nav.nvim",
-        lazy = true,
-        event = "VeryLazy",
-        keys = {
-            { "<A-h>", "<cmd>ZellijNavigateLeftTab<cr>",  { silent = true, desc = "navigate left or tab" } },
-            { "<A-j>", "<cmd>ZellijNavigateDown<cr>",     { silent = true, desc = "navigate down" } },
-            { "<A-k>", "<cmd>ZellijNavigateUp<cr>",       { silent = true, desc = "navigate up" } },
-            { "<A-l>", "<cmd>ZellijNavigateRightTab<cr>", { silent = true, desc = "navigate right or tab" } },
-        },
-        opts = {},
     },
 
     {
@@ -242,13 +263,4 @@ vim.g.NERDSpaceDelims = 1
 vim.cmd [[
   	let g:NERDCustomDelimiters = { 'c': { 'left': '//', 'right': ''} }
 ]]
--- vim.keymap.set({ 'n', 'v' }, '++', [[<plug>NERDCommenterToggle]], {})
 vim.keymap.set({ 'n', 'v' }, '<leader>/', [[<plug>NERDCommenterToggle]], {})
-
--- zellij-nav.nvim
--- Ensures that when exiting neovim, Zellij returns to normal mode
--- Note zellij autolock plugin must be set up in zellij config
-vim.api.nvim_create_autocmd("VimLeave", {
-    pattern = "*",
-    command = "silent !zellij action switch-mode normal"
-})
